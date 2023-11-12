@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.example.pictgram</groupId>
 	<artifactId>pictgram</artifactId>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>pictgram</name>
 	<description>Pictgram</description>
@@ -17,6 +18,16 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+ 		 <groupId>org.springframework.boot</groupId>
+  		 <artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>	
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -31,6 +42,11 @@
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<dependency>
+  			<groupId>nz.net.ultraq.thymeleaf</groupId>
+  			<artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
+
 		<dependency>
   			<groupId>org.projectlombok</groupId>
   			<artifactId>lombok</artifactId>
@@ -49,6 +65,35 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+            	<groupId>nl.geodienstencentrum.maven</groupId>
+	            <artifactId>sass-maven-plugin</artifactId>
+	            <version>3.7.2</version>
+	            <executions>
+                	<execution>
+			        	<id>compile</id>
+			            <phase>prepare-package</phase>
+			      		<goals>
+                  	    	<goal>update-stylesheets</goal>
+                  		</goals>  
+   					 </execution>
+  				</executions>
+  				<configuration>
+   			 		<resources>
+    		  			<resource>
+        					<source>
+          						<directory>${basedir}/src/main/resources/static/scss</directory>
+       						 </source>
+			       			 <destination>${basedir}/src/main/resources/static/css</destination>
+			      		</resource>
+			   		</resources>
+			    	<sassOptions>
+			      		<cache>false</cache>
+			      		<always_update>true</always_update>
+			   		</sassOptions>
+			    </configuration>
+			</plugin>
+			
 		</plugins>
 	</build>
 
